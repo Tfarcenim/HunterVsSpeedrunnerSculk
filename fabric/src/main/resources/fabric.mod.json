@@ -11,12 +11,13 @@
         "homepage": "https://fabricmc.net/",
         "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
+    "accessWidener": "huntervsspeedrunnersculk.aw",
     "license": "${license}",
     "icon": "assets/modid/${mod_id}.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.example.examplemod.ExampleMod"
+          "tfar.huntervsspeedrunnersculk.HunterVsSpeedrunnerSculkFabric"
         ]
     },
     "mixins": [
