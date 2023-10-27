@@ -33,4 +33,7 @@ public interface IPlatformHelper {
 
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    void sendScrollPacket(boolean up);
+
 }

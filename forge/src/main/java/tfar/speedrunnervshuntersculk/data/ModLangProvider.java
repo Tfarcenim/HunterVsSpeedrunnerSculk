@@ -2,12 +2,12 @@ package tfar.speedrunnervshuntersculk.data;
 
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
-import tfar.speedrunnervshuntersculk.Constants;
 import tfar.speedrunnervshuntersculk.Init;
+import tfar.speedrunnervshuntersculk.SpeedrunnerVsHunterSculk;
 
 public class ModLangProvider extends LanguageProvider {
     public ModLangProvider(PackOutput output) {
-        super(output, Constants.MOD_ID, "en_us");
+        super(output, SpeedrunnerVsHunterSculk.MOD_ID, "en_us");
     }
 
     @Override

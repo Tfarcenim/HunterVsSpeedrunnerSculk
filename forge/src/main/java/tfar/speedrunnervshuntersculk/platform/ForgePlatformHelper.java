@@ -23,4 +23,9 @@ public class ForgePlatformHelper implements IPlatformHelper {
 
         return !FMLLoader.isProduction();
     }
+
+    @Override
+    public void sendScrollPacket(boolean up) {
+
+    }
 }

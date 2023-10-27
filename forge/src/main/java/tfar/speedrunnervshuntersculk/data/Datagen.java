@@ -7,9 +7,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.data.event.GatherDataEvent;
-import tfar.speedrunnervshuntersculk.Constants;
+import tfar.speedrunnervshuntersculk.SpeedrunnerVsHunterSculk;
 
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Datagen {
@@ -30,6 +29,6 @@ public class Datagen {
     }
 
     public static <V> Stream<V> getKnown(Registry<V> registry) {
-        return registry.stream().filter(o -> registry.getKey(o).getNamespace().equals(Constants.MOD_ID));
+        return registry.stream().filter(o -> registry.getKey(o).getNamespace().equals(SpeedrunnerVsHunterSculk.MOD_ID));
     }
 }

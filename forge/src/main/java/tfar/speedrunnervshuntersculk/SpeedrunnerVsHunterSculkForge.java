@@ -2,13 +2,14 @@ package tfar.speedrunnervshuntersculk;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
 import tfar.speedrunnervshuntersculk.data.Datagen;
 
-@Mod(Constants.MOD_ID)
+@Mod(SpeedrunnerVsHunterSculk.MOD_ID)
 public class SpeedrunnerVsHunterSculkForge {
     
     public SpeedrunnerVsHunterSculkForge() {
@@ -21,11 +22,16 @@ public class SpeedrunnerVsHunterSculkForge {
         bus.addListener(this::register);
         // Use Forge to bootstrap the Common mod.
         SpeedrunnerVsHunterSculk.init();
+        bus.addListener(this::commands);
+    }
+
+    private void commands(RegisterCommandsEvent event) {
+        ModCommand.register(event.getDispatcher());
     }
 
     private void register(RegisterEvent event) {
-        event.register(Registries.BLOCK,new ResourceLocation(Constants.MOD_ID,"speedrunner_sculk_sensor"),() -> Init.SPEEDRUNNER_SCULK_SENSOR);
-        event.register(Registries.BLOCK_ENTITY_TYPE,new ResourceLocation(Constants.MOD_ID,"speedrunner_sculk_sensor"),() -> Init.SPEEDRUNNER_SCULK_SENSOR_E);
-        event.register(Registries.ITEM,new ResourceLocation(Constants.MOD_ID,"speedrunner_sculk_sensor"),() -> Init.SPEEDRUNNER_SCULK_SENSOR_I);
+        event.register(Registries.BLOCK,new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID,"speedrunner_sculk_sensor"),() -> Init.SPEEDRUNNER_SCULK_SENSOR);
+        event.register(Registries.BLOCK_ENTITY_TYPE,new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID,"speedrunner_sculk_sensor"),() -> Init.SPEEDRUNNER_SCULK_SENSOR_E);
+        event.register(Registries.ITEM,new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID,"speedrunner_sculk_sensor"),() -> Init.SPEEDRUNNER_SCULK_SENSOR_I);
     }
 }

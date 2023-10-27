@@ -11,13 +11,16 @@
         "homepage": "https://fabricmc.net/",
         "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
-    "accessWidener": "huntervsspeedrunnersculk.aw",
+    "accessWidener": "speedrunnervshuntersculk.accesswidener",
     "license": "${license}",
     "icon": "assets/modid/${mod_id}.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-          "tfar.huntervsspeedrunnersculk.HunterVsSpeedrunnerSculkFabric"
+          "tfar.speedrunnervshuntersculk.SpeedrunnerVsHunterSculkFabric"
+        ],
+        "client": [
+            "tfar.speedrunnervshuntersculk.client.Client"
         ]
     },
     "mixins": [
@@ -27,7 +30,7 @@
     "depends": {
         "fabricloader": ">=0.14",
         "fabric": "*",
-        "minecraft": "1.20",
+        "minecraft": ">=1.20",
         "java": ">=17"
     },
     "suggests": {
