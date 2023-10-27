@@ -15,4 +15,9 @@ public class ClientPacketHandler extends PacketHandler{
         buf.writeBoolean(right);
         ClientPlayNetworking.send(scroll, buf);
     }
+
+    public static void sendKeyBind() {
+        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+        ClientPlayNetworking.send(keybind,buf);
+    }
 }

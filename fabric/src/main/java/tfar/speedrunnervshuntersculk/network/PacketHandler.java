@@ -14,15 +14,21 @@ import tfar.speedrunnervshuntersculk.Utils;
 
 public class PacketHandler {
     public static final ResourceLocation scroll = new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "scroll");
+    public static final ResourceLocation keybind = new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "keybind");
 
     public static void registerMessages() {
         ServerPlayNetworking.registerGlobalReceiver(scroll, PacketHandler::receiveScroll);
+        ServerPlayNetworking.registerGlobalReceiver(keybind,PacketHandler::receiveButton);
     }
 
 
 
     static void receiveScroll(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl handler, FriendlyByteBuf buf, PacketSender responseSender) {
         boolean right = buf.readBoolean();
-        server.execute(() -> Utils.changeMode(player.getMainHandItem(),right));
+        server.execute(() -> Utils.changeMode(player,right));
+    }
+
+    static void receiveButton(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl handler, FriendlyByteBuf buf, PacketSender responseSender) {
+        server.execute(() -> Utils.summonVoidHole(player));
     }
 }

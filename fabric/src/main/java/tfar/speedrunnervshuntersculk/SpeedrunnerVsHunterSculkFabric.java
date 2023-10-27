@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import tfar.speedrunnervshuntersculk.network.PacketHandler;
 
 public class SpeedrunnerVsHunterSculkFabric implements ModInitializer {
-    
+
     @Override
     public void onInitialize() {
         
@@ -21,7 +21,6 @@ public class SpeedrunnerVsHunterSculkFabric implements ModInitializer {
         // project.
 
         // Use Fabric to bootstrap the Common mod.
-        SpeedrunnerVsHunterSculk.LOG.info("Hello Fabric world!");
         register();
         SpeedrunnerVsHunterSculk.init();
         CommandRegistrationCallback.EVENT.register(this::registerCommands);
@@ -36,6 +35,6 @@ public class SpeedrunnerVsHunterSculkFabric implements ModInitializer {
         Registry.register(BuiltInRegistries.BLOCK,new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID,"speedrunner_sculk_sensor"),Init.SPEEDRUNNER_SCULK_SENSOR);
         Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID,"speedrunner_sculk_sensor"),Init.SPEEDRUNNER_SCULK_SENSOR_E);
         Registry.register(BuiltInRegistries.ITEM,new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID,"speedrunner_sculk_sensor"),Init.SPEEDRUNNER_SCULK_SENSOR_I);
+        Registry.register(BuiltInRegistries.ENTITY_TYPE,new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID,"void_hole"),Init.VOID_HOLE);
     }
-
 }

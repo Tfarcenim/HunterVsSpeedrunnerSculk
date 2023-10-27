@@ -17,6 +17,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
+    include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:$reach_attribute")
+
 }
 
 loom {
@@ -30,6 +32,12 @@ loom {
         client {
             client()
             setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+        client2 {
+            client()
+            setConfigName("Fabric Client 2")
             ideConfigGenerated(true)
             runDir("run")
         }

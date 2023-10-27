@@ -48,6 +48,13 @@ subprojects {
             name = 'BlameJared Maven (JEI / CraftTweaker / Bookshelf)'
             url = 'https://maven.blamejared.com'
         }
+
+        maven {
+            url "https://maven.jamieswhiteshirt.com/libs-release"
+            content {
+                includeGroup "com.jamieswhiteshirt"
+            }
+        }
     }
 
     tasks.withType(JavaCompile).configureEach {

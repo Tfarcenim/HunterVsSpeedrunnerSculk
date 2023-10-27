@@ -41,7 +41,8 @@ public class SpeedrunnerVsHunterSculk {
     //
     //can't use teams to desgniate players on teams as it would conflict with my manhunt datapack
     //
-    //description of the mod: speedrunner is given a skulk sensor that can be upgraded, it is triggered by hunters only, it would increase the health, reach, knockback and "void power level" of the speedrunner based on which version of the skulk sensor is currently being used. the speedrunner would always have this skulk sensor in his inventory and could place it down 1 time per minute, and to change which version of the sensor is being placed you would crouch and scroll while the skulk sensor is in your hand
+    //description of the mod: speedrunner is given a skulk sensor that can be upgraded, it is triggered by hunters only,
+    // it would increase the health, reach, knockback and "void power level" of the speedrunner based on which version of the skulk sensor is currently being used. the speedrunner would always have this skulk sensor in his inventory and could place it down 1 time per minute, and to change which version of the sensor is being placed you would crouch and scroll while the skulk sensor is in your hand
     //
     //upgrades are unlocked through commands for each version (health, reach, knockback, void level)
     //

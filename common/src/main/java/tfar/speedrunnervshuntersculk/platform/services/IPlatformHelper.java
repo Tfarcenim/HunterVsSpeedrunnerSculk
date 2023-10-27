@@ -1,5 +1,7 @@
 package tfar.speedrunnervshuntersculk.platform.services;
 
+import net.minecraft.world.entity.ai.attributes.Attribute;
+
 public interface IPlatformHelper {
 
     /**
@@ -35,5 +37,9 @@ public interface IPlatformHelper {
     }
 
     void sendScrollPacket(boolean up);
+    void sendKeybindPacket();
+
+    Attribute getBlockReachAttribute();
+    Attribute getEntityReachAttribute();
 
 }
