@@ -1,10 +1,11 @@
 {
+	"parent": "block/block",
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "speedrunnervshuntersculk:block/blockkb",
-		"2": "speedrunnervshuntersculk:block/passivekb",
-		"particle": "speedrunnervshuntersculk:block/activekb"
+		"1": "speedrunnervshuntersculk:block/blockhp",
+		"2": "speedrunnervshuntersculk:block/passivehp",
+		"particle": "speedrunnervshuntersculk:block/activehp"
 	},
 	"elements": [
 		{

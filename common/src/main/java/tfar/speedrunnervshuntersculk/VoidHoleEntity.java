@@ -12,10 +12,7 @@ import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.OwnableEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -88,6 +85,7 @@ public class VoidHoleEntity extends Entity implements OwnableEntity {
             }
             level().getProfiler().pop();
         }
+        this.move(MoverType.SELF, this.getDeltaMovement());
     }
 
     public void giveItemsToOwner(List<ItemStack> stacks) {

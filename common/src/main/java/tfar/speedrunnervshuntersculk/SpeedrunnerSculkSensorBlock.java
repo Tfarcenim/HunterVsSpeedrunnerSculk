@@ -57,7 +57,7 @@ public class SpeedrunnerSculkSensorBlock extends SculkSensorBlock {
             SculkSensorBlockEntity sculkSensorBlockEntity = (SculkSensorBlockEntity)blockEntity;
             if (level instanceof ServerLevel serverLevel) {
                 if (sculkSensorBlockEntity.getVibrationUser().canReceiveVibration(serverLevel, pos, GameEvent.STEP, GameEvent.Context.of(entity,state))) {
-                    sculkSensorBlockEntity.getListener().forceScheduleVibration(serverLevel, GameEvent.STEP, GameEvent.Context.of(entity), entity.position());
+                    sculkSensorBlockEntity.getListener().forceScheduleVibration(serverLevel, GameEvent.STEP, GameEvent.Context.of(entity,state), entity.position());
                 }
             }
         }
@@ -78,6 +78,6 @@ public class SpeedrunnerSculkSensorBlock extends SculkSensorBlock {
 
     @Override
     public int getActiveTicks() {
-        return 5;
+        return 10;
     }
 }
