@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "sculk_sensor_phase=active": {
+      "model": "speedrunnervshuntersculk:block/speedrunner_sculk_sensor_void_active"
+    },
+    "sculk_sensor_phase=cooldown": {
+      "model": "speedrunnervshuntersculk:block/speedrunner_sculk_sensor_void_active"
+    },
+    "sculk_sensor_phase=inactive": {
+      "model": "speedrunnervshuntersculk:block/speedrunner_sculk_sensor_void_inactive"
+    }
+  }
+}

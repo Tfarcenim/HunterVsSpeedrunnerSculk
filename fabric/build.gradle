@@ -18,6 +18,15 @@ dependencies {
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
     include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:$reach_attribute")
+    modImplementation "curse.maven:time-stop-clock-mod-690991:4733373"
+    modImplementation "curse.maven:yacl-667299:4772784"
+    // Replace modImplementation with modApi if you expose components in your own API
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:$cca_version"
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-world:$cca_version"
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.2.0")))
+
+    // Adds a dependency on a specific module
+   // modImplementation "dev.onyxstudios.cardinal-components-api:<MODULE>:<VERSION>"
 
 }
 

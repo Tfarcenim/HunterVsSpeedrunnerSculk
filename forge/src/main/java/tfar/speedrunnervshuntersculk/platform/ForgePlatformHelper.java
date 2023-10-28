@@ -1,7 +1,9 @@
 package tfar.speedrunnervshuntersculk.platform;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.common.ForgeMod;
+import tfar.speedrunnervshuntersculk.KeyAction;
 import tfar.speedrunnervshuntersculk.platform.services.IPlatformHelper;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -32,7 +34,12 @@ public class ForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public void sendKeybindPacket() {
+    public void sendKeybindPacket(KeyAction action) {
+
+    }
+
+    @Override
+    public void stopTime(ServerPlayer player) {
 
     }
 

@@ -19,8 +19,11 @@ import net.minecraft.world.level.gameevent.vibrations.VibrationSystem;
 import org.jetbrains.annotations.Nullable;
 
 public class SpeedrunnerSculkSensorBlock extends SculkSensorBlock {
-    public SpeedrunnerSculkSensorBlock(Properties $$0) {
+    public final BuffType buffType;
+
+    public SpeedrunnerSculkSensorBlock(Properties $$0, BuffType buffType) {
         super($$0);
+        this.buffType = buffType;
     }
 
     @Nullable
@@ -44,7 +47,6 @@ public class SpeedrunnerSculkSensorBlock extends SculkSensorBlock {
         if (level.getBlockEntity(pos) instanceof SpeedrunnerSculkSensorBlockEntity speedrunnerSculkSensorBlockEntity && livingEntity != null) {
             speedrunnerSculkSensorBlockEntity.setOwner(livingEntity.getUUID());
             BuffType buffType = BuffType.values()[stack.getOrCreateTag().getInt(Utils.BUFF_TAG)];
-            speedrunnerSculkSensorBlockEntity.setBuffType(buffType);
         }
     }
 
@@ -68,11 +70,8 @@ public class SpeedrunnerSculkSensorBlock extends SculkSensorBlock {
         if (SpeedrunnerVsHunterSculk.speedrunner != null && !level.isClientSide) {
             ServerPlayer serverPlayer = level.getServer().getPlayerList().getPlayer(SpeedrunnerVsHunterSculk.speedrunner);
             if (serverPlayer != null) {
-                BlockEntity blockEntity = level.getBlockEntity(pos);
-                if (blockEntity instanceof SpeedrunnerSculkSensorBlockEntity speedrunnerSculkSensorBlockEntity) {
-                    BuffType buffType = speedrunnerSculkSensorBlockEntity.getBuffType();
-                    buffType.activate.accept(serverPlayer);
-                }
+                BuffType buffType = this.buffType;
+                buffType.activate.accept(serverPlayer);
             }
         }
     }

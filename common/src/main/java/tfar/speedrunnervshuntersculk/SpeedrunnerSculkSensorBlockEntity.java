@@ -24,17 +24,7 @@ public class SpeedrunnerSculkSensorBlockEntity extends SculkSensorBlockEntity im
     }
 
     private UUID owner;
-    private BuffType buffType;
 
-
-    public void setBuffType(BuffType buffType) {
-        this.buffType = buffType;
-        setChanged();
-    }
-
-    public BuffType getBuffType() {
-        return buffType;
-    }
 
     @Override
     public VibrationSystem.User createVibrationUser() {
@@ -63,7 +53,6 @@ public class SpeedrunnerSculkSensorBlockEntity extends SculkSensorBlockEntity im
         if (owner != null) {
             tag.putUUID("owner",owner);
         }
-        tag.putInt(Utils.BUFF_TAG,buffType.ordinal());
     }
 
     @Nullable
@@ -78,7 +67,6 @@ public class SpeedrunnerSculkSensorBlockEntity extends SculkSensorBlockEntity im
         if (tag.contains("owner")) {
             owner = tag.getUUID("owner");
         }
-        buffType = BuffType.values()[tag.getInt(Utils.BUFF_TAG)];
     }
 
     public class VibeUser extends VibrationUser {
@@ -87,14 +75,13 @@ public class SpeedrunnerSculkSensorBlockEntity extends SculkSensorBlockEntity im
             super($$1);
         }
 
+        static final boolean debug = false;
 
         @Override
         public boolean canReceiveVibration(ServerLevel $$0, BlockPos $$1, GameEvent $$2, @Nullable GameEvent.Context context) {
             boolean preconditions = super.canReceiveVibration($$0, $$1, $$2, context);
             if (!preconditions) return false;
-
-            if (true) return true;
-
+            if (debug) return true;
             if (context == null) return true;
 
             return context.sourceEntity() instanceof ServerPlayer serverPlayer && !serverPlayer.getUUID().equals(SpeedrunnerVsHunterSculk.speedrunner);

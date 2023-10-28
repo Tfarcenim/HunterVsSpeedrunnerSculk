@@ -27,7 +27,13 @@ public class TimeLimitedBlockItem extends BlockItem {
     @Override
     public InteractionResult useOn(UseOnContext $$0) {
         Player player = $$0.getPlayer();
-        if (player != null) player.getCooldowns().addCooldown(this,20 * 60);
+        if (player != null) {
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH_I,20 * 60);
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_REACH_I,20 * 60);
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_KNOCKBACK_I,20 * 60);
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_VOID_I,20 * 60);
+
+        }
         return super.useOn($$0);
     }
 

@@ -1,6 +1,8 @@
 package tfar.speedrunnervshuntersculk.platform.services;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import tfar.speedrunnervshuntersculk.KeyAction;
 
 public interface IPlatformHelper {
 
@@ -37,7 +39,9 @@ public interface IPlatformHelper {
     }
 
     void sendScrollPacket(boolean up);
-    void sendKeybindPacket();
+    void sendKeybindPacket(KeyAction action);
+
+    void stopTime(ServerPlayer player);
 
     Attribute getBlockReachAttribute();
     Attribute getEntityReachAttribute();

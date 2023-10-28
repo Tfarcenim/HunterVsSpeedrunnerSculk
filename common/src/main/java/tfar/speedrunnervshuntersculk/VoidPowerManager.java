@@ -9,10 +9,6 @@ import net.minecraft.server.bossevents.CustomBossEvent;
 import net.minecraft.server.bossevents.CustomBossEvents;
 import net.minecraft.server.level.ServerPlayer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-
 public class VoidPowerManager {
 
     public static final ResourceLocation ID = new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID,"void_power");
@@ -42,12 +38,6 @@ public class VoidPowerManager {
     //level 2: can teleport to anywhere i right click/ am looking at while crouched
     //level 3: can stop time for 10 seconds
 
-    static final List<Consumer<ServerPlayer>> REWARDS = new ArrayList<>();
-
-    static {
-
-    }
-
     public static void addPower(ServerPlayer player,int amount) {
         CustomBossEvent customBossEvent = createBar(player);
 
@@ -58,9 +48,6 @@ public class VoidPowerManager {
             customBossEvent.setName(Component.literal("Void Power "+(i+1)));
             customBossEvent.setValue(0);
             customBossEvent.setMax(powerRequiredForNextLevel(i+1));
-            if (i < REWARDS.size()) {
-                REWARDS.get(i).accept(player);
-            }
         }
     }
 

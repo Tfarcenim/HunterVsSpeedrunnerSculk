@@ -6,6 +6,7 @@ import net.minecraft.data.models.blockstates.*;
 import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.SculkSensorPhase;
@@ -23,14 +24,25 @@ public class ModBlockModelProvider extends BlockModelGenerators {
 
     @Override
     public void run() {
-        createSpeedrunnerSculkSensor();
+        createSpeedrunnerSculkSensor(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH);
+        createSpeedrunnerSculkSensor(Init.SPEEDRUNNER_SCULK_SENSOR_REACH);
+        createSpeedrunnerSculkSensor(Init.SPEEDRUNNER_SCULK_SENSOR_KNOCKBACK);
+        createSpeedrunnerSculkSensor(Init.SPEEDRUNNER_SCULK_SENSOR_VOID);
+    }
+
+    public void createSpeedrunnerSculkSensor(Block block) {
+        ResourceLocation resourcelocation = ModelLocationUtils.getModelLocation(block, "_inactive");
+        ResourceLocation resourcelocation1 = ModelLocationUtils.getModelLocation(block, "_active");
+        this.delegateItemModel(block, resourcelocation);
+        this.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
+                .with(PropertyDispatch.property(BlockStateProperties.SCULK_SENSOR_PHASE).generate((p_284650_) -> Variant.variant().with(VariantProperties.MODEL, p_284650_ != SculkSensorPhase.ACTIVE && p_284650_ != SculkSensorPhase.COOLDOWN ? resourcelocation : resourcelocation1))));
     }
 
     public void createSpeedrunnerSculkSensor() {
         ResourceLocation resourcelocation = ModelLocationUtils.getModelLocation(Blocks.SCULK_SENSOR, "_inactive");
         ResourceLocation resourcelocation1 = ModelLocationUtils.getModelLocation(Blocks.SCULK_SENSOR, "_active");
-        this.delegateItemModel(Init.SPEEDRUNNER_SCULK_SENSOR, resourcelocation);
-        this.blockStateOutput.accept(MultiVariantGenerator.multiVariant(Init.SPEEDRUNNER_SCULK_SENSOR)
+        this.delegateItemModel(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH, resourcelocation);
+        this.blockStateOutput.accept(MultiVariantGenerator.multiVariant(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH)
                 .with(PropertyDispatch.property(BlockStateProperties.SCULK_SENSOR_PHASE).generate((p_284650_) -> Variant.variant().with(VariantProperties.MODEL, p_284650_ != SculkSensorPhase.ACTIVE && p_284650_ != SculkSensorPhase.COOLDOWN ? resourcelocation : resourcelocation1))));
     }
 
