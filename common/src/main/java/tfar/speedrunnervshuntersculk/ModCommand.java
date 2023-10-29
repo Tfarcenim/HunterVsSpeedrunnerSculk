@@ -26,9 +26,10 @@ public class ModCommand {
                         .executes(ModCommand::speedrunner)
                         .then(Commands.argument("players", GameProfileArgument.gameProfile())
                                 .executes(ModCommand::alsoSpeedrunner))
-                        .then(Commands.argument("unlock", StringArgumentType.string()).suggests(VALID_UNLOCK_ABILITIES)
-                                .executes(ModCommand::unlockBuff)
-        ));
+                        .then(Commands.literal("unlock")
+                                .then(Commands.argument("buff", StringArgumentType.string()).suggests(VALID_UNLOCK_ABILITIES)
+                                        .executes(ModCommand::unlockBuff)
+        )));
     }
 
     private static final SuggestionProvider<CommandSourceStack> VALID_UNLOCK_ABILITIES =
@@ -42,7 +43,7 @@ public class ModCommand {
     }
 
     public static int unlockBuff(CommandContext<CommandSourceStack> context) {
-        String string = StringArgumentType.getString(context,"unlock");
+        String string = StringArgumentType.getString(context,"buff");
         try {
             BuffType buffType = BuffType.valueOf(string);
             Utils.unlockBuffType(buffType);

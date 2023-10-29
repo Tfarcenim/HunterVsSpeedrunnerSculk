@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tfar.speedrunnervshuntersculk.client.CommonClient;
 
 @Mixin(MouseHandler.class)
-public class MixinTitleScreen {
+public class MouseHandlerMixin {
 
     @Shadow
     @Final

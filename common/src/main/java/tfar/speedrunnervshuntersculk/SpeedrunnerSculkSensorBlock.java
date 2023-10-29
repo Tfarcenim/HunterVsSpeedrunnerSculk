@@ -3,9 +3,12 @@ package tfar.speedrunnervshuntersculk;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -15,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SculkSensorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.SculkSensorPhase;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.vibrations.VibrationSystem;
 import org.jetbrains.annotations.Nullable;
@@ -67,7 +71,15 @@ public class SpeedrunnerSculkSensorBlock extends SculkSensorBlock {
 
     @Override
     public void activate(@Nullable Entity $$0, Level level, BlockPos pos, BlockState $$3, int $$4, int $$5) {
-        super.activate($$0, level, pos, $$3, $$4, $$5);
+        level.setBlock(pos, $$3.setValue(PHASE, SculkSensorPhase.ACTIVE).setValue(POWER, $$4), 3);
+        level.scheduleTick(pos, $$3.getBlock(), this.getActiveTicks());
+        updateNeighbours(level, pos, $$3);
+        tryResonateVibration($$0, level, pos, $$5);
+        level.gameEvent($$0, GameEvent.SCULK_SENSOR_TENDRILS_CLICKING, pos);
+        if (!(Boolean)$$3.getValue(WATERLOGGED)) {
+         //   level.playSound(null, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.SCULK_CLICKING, SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.2F + 0.8F);
+        }
+
         if (SpeedrunnerVsHunterSculk.speedrunner != null && !level.isClientSide) {
             ServerPlayer serverPlayer = level.getServer().getPlayerList().getPlayer(SpeedrunnerVsHunterSculk.speedrunner);
             if (serverPlayer != null) {

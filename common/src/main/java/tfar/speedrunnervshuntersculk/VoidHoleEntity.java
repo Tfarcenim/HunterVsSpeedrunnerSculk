@@ -15,10 +15,15 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -26,14 +31,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class VoidHoleEntity extends Entity implements OwnableEntity {
-    public VoidHoleEntity(EntityType<?> $$0, Level $$1) {
+public class VoidHoleEntity extends Projectile {
+
+    VoidHoleEntity(EntityType<? extends Projectile> $$0, Level $$1) {
         super($$0, $$1);
     }
 
-
-    protected static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(
-            VoidHoleEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     public int progress;
 
     public List<BlockPos> breakPositions = new ArrayList<>();
@@ -66,9 +69,21 @@ public class VoidHoleEntity extends Entity implements OwnableEntity {
     }
 
     @Override
+    protected void defineSynchedData() {
+
+    }
+
+    @Override
     public void tick() {
         super.tick();
-        if (!level().isClientSide) {
+
+        HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
+        if (hitresult.getType() != HitResult.Type.MISS) {
+            this.onHit(hitresult);
+        }
+
+
+        if (!level().isClientSide && getDeltaMovement().lengthSqr() < .0005) {
             level().getProfiler().push("voidHole");
             for (int i = 0; i < speed; i++) {
                 progress++;
@@ -83,9 +98,18 @@ public class VoidHoleEntity extends Entity implements OwnableEntity {
                     discard();
                 }
             }
+
+
             level().getProfiler().pop();
         }
-        this.move(MoverType.SELF, this.getDeltaMovement());
+        Vec3 vec3 = this.getDeltaMovement();
+        move(MoverType.SELF,vec3);
+    }
+
+    @Override
+    protected void onHit(HitResult $$0) {
+        super.onHit($$0);
+        setDeltaMovement(Vec3.ZERO);
     }
 
     public void giveItemsToOwner(List<ItemStack> stacks) {
@@ -109,7 +133,7 @@ public class VoidHoleEntity extends Entity implements OwnableEntity {
                             itementity1.makeFakeItem();
                         }
 
-                        serverplayer.level().playSound((Player) null, serverplayer.getX(), serverplayer.getY(), serverplayer.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, ((serverplayer.getRandom().nextFloat() - serverplayer.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                        serverplayer.level().playSound(null, serverplayer.getX(), serverplayer.getY(), serverplayer.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, ((serverplayer.getRandom().nextFloat() - serverplayer.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
                         serverplayer.containerMenu.broadcastChanges();
                     } else {
                         ItemEntity itementity = serverplayer.drop(itemstack1, false);
@@ -123,47 +147,25 @@ public class VoidHoleEntity extends Entity implements OwnableEntity {
         }
     }
 
-
-    @Override
-    protected void defineSynchedData() {
-        entityData.define(DATA_OWNERUUID_ID,Optional.empty());
-    }
-
     @Override
     protected void readAdditionalSaveData(CompoundTag var1) {
         progress = var1.getInt("progress");
-
-        UUID $$1;
-        if (var1.hasUUID("Owner")) {
-            $$1 = var1.getUUID("Owner");
-        } else {
-            String $$2 = var1.getString("Owner");
-            $$1 = OldUsersConverter.convertMobOwnerIfNecessary(this.getServer(), $$2);
-        }
-
-        if ($$1 != null) {
-            try {
-                this.setOwnerUUID($$1);
-            } catch (Throwable var4) {
-            }
-        }
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag var1) {
         var1.putInt("progress",progress);
-        if (this.getOwnerUUID() != null) {
-            var1.putUUID("Owner", this.getOwnerUUID());
-        }
     }
+
 
     @Nullable
     @Override
-    public UUID getOwnerUUID() {
-        return this.entityData.get(DATA_OWNERUUID_ID).orElse(null);
+    public LivingEntity getOwner() {
+        return (LivingEntity) super.getOwner();
     }
 
-    public void setOwnerUUID(@javax.annotation.Nullable UUID $$0) {
-        this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable($$0));
+    @Override
+    public boolean alwaysAccepts() {
+        return super.alwaysAccepts();
     }
 }

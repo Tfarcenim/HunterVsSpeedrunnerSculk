@@ -62,7 +62,7 @@ public class Utils {
             VoidHoleEntity voidHoleEntity = Init.VOID_HOLE.create(player.level());
             voidHoleEntity.createOrderedBreakPositions();
             voidHoleEntity.moveTo(player.getPosition(0));
-            voidHoleEntity.setOwnerUUID(player.getUUID());
+            voidHoleEntity.setOwner(player);
             voidHoleEntity.setNoGravity(true);
             voidHoleEntity.setDeltaMovement(player.getLookAngle());
             player.level().addFreshEntity(voidHoleEntity);

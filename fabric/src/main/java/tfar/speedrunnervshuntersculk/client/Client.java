@@ -15,6 +15,7 @@ public class Client implements ClientModInitializer, ClientTickEvents.StartTick 
 
     @Override
     public void onInitializeClient() {
+        BlockRenderLayerMap.INSTANCE.putBlock(Init.SPEEDRUNNER_SCULK_SENSOR_BLANK, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Init.SPEEDRUNNER_SCULK_SENSOR_REACH, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Init.SPEEDRUNNER_SCULK_SENSOR_KNOCKBACK, RenderType.cutout());
