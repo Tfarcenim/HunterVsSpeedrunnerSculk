@@ -7,6 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SculkSensorBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -78,6 +79,6 @@ public class SpeedrunnerSculkSensorBlock extends SculkSensorBlock {
 
     @Override
     public int getActiveTicks() {
-        return 10;
+        return SpeedrunnerVsHunterSculk.server.getLevel(Level.OVERWORLD).getGameRules().getInt(SpeedrunnerVsHunterSculk.RULE_SPEEDRUNNER_SCULK_COOLDOWN);
     }
 }

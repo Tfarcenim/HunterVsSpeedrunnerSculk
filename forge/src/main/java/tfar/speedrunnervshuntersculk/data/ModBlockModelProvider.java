@@ -24,6 +24,7 @@ public class ModBlockModelProvider extends BlockModelGenerators {
 
     @Override
     public void run() {
+        createBlankSpeedrunnerSculkSensor();
         createSpeedrunnerSculkSensor(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH);
         createSpeedrunnerSculkSensor(Init.SPEEDRUNNER_SCULK_SENSOR_REACH);
         createSpeedrunnerSculkSensor(Init.SPEEDRUNNER_SCULK_SENSOR_KNOCKBACK);
@@ -38,11 +39,11 @@ public class ModBlockModelProvider extends BlockModelGenerators {
                 .with(PropertyDispatch.property(BlockStateProperties.SCULK_SENSOR_PHASE).generate((p_284650_) -> Variant.variant().with(VariantProperties.MODEL, p_284650_ != SculkSensorPhase.ACTIVE && p_284650_ != SculkSensorPhase.COOLDOWN ? resourcelocation : resourcelocation1))));
     }
 
-    public void createSpeedrunnerSculkSensor() {
+    public void createBlankSpeedrunnerSculkSensor() {
         ResourceLocation resourcelocation = ModelLocationUtils.getModelLocation(Blocks.SCULK_SENSOR, "_inactive");
         ResourceLocation resourcelocation1 = ModelLocationUtils.getModelLocation(Blocks.SCULK_SENSOR, "_active");
-        this.delegateItemModel(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH, resourcelocation);
-        this.blockStateOutput.accept(MultiVariantGenerator.multiVariant(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH)
+        this.delegateItemModel(Init.SPEEDRUNNER_SCULK_SENSOR_BLANK, resourcelocation);
+        this.blockStateOutput.accept(MultiVariantGenerator.multiVariant(Init.SPEEDRUNNER_SCULK_SENSOR_BLANK)
                 .with(PropertyDispatch.property(BlockStateProperties.SCULK_SENSOR_PHASE).generate((p_284650_) -> Variant.variant().with(VariantProperties.MODEL, p_284650_ != SculkSensorPhase.ACTIVE && p_284650_ != SculkSensorPhase.COOLDOWN ? resourcelocation : resourcelocation1))));
     }
 

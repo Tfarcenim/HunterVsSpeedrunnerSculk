@@ -9,6 +9,7 @@ import io.github.suel_ki.timeclock.core.networking.packets.SoundManagerS2CPacket
 import io.github.suel_ki.timeclock.core.platform.NetworkPlatform;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
@@ -17,6 +18,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -32,7 +34,7 @@ import tfar.speedrunnervshuntersculk.network.PacketHandler;
 import java.util.Iterator;
 import java.util.Optional;
 
-public class SpeedrunnerVsHunterSculkFabric implements ModInitializer, UseBlockCallback {
+public class SpeedrunnerVsHunterSculkFabric implements ModInitializer, UseBlockCallback, ServerLifecycleEvents.ServerStarted {
 
     @Override
     public void onInitialize() {
@@ -46,6 +48,8 @@ public class SpeedrunnerVsHunterSculkFabric implements ModInitializer, UseBlockC
         SpeedrunnerVsHunterSculk.init();
         CommandRegistrationCallback.EVENT.register(this::registerCommands);
         UseBlockCallback.EVENT.register(this);
+        ServerLifecycleEvents.SERVER_STARTED.register(this);
+
         PacketHandler.registerMessages();
     }
 
@@ -81,6 +85,9 @@ public class SpeedrunnerVsHunterSculkFabric implements ModInitializer, UseBlockC
     }
 
     private void register() {
+        Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "speedrunner_sculk_sensor_blank"), Init.SPEEDRUNNER_SCULK_SENSOR_BLANK);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "speedrunner_sculk_sensor_blank"), Init.SPEEDRUNNER_SCULK_SENSOR_BLANK_I);
+
         Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "speedrunner_sculk_sensor_health"), Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "speedrunner_sculk_sensor_health"), Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH_I);
 
@@ -110,5 +117,10 @@ public class SpeedrunnerVsHunterSculkFabric implements ModInitializer, UseBlockC
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public void onServerStarted(MinecraftServer server) {
+        SpeedrunnerVsHunterSculk.serverStarted(server);
     }
 }

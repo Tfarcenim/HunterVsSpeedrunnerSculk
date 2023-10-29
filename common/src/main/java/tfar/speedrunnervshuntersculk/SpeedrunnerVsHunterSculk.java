@@ -1,5 +1,7 @@
 package tfar.speedrunnervshuntersculk;
 
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.level.GameRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tfar.speedrunnervshuntersculk.platform.Services;
@@ -34,6 +36,15 @@ public class SpeedrunnerVsHunterSculk {
         // we have an interface in the common code and use a loader specific implementation to delegate our call to
         // the platform specific approach.
     }
+
+    public static MinecraftServer server;
+
+    public static void serverStarted(MinecraftServer server) {
+        SpeedrunnerVsHunterSculk.server = server;
+    }
+
+    public static GameRules.Key<GameRules.IntegerValue> RULE_SPEEDRUNNER_SCULK_COOLDOWN;
+
 
     //mod info
 

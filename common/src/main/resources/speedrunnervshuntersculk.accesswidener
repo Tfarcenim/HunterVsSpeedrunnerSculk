@@ -6,3 +6,5 @@ extendable class net/minecraft/world/level/block/entity/BlockEntityType$BlockEnt
 
 # Registering custom model predicate providers for item models
 accessible method net/minecraft/client/renderer/item/ItemProperties register (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/item/ClampedItemPropertyFunction;)V
+
+accessible method net/minecraft/world/level/GameRules$IntegerValue create (I)Lnet/minecraft/world/level/GameRules$Type;

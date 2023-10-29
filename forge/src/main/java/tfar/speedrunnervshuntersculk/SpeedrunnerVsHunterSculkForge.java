@@ -33,6 +33,9 @@ public class SpeedrunnerVsHunterSculkForge {
     }
 
     private void register(RegisterEvent event) {
+        event.register(Registries.BLOCK, new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "speedrunner_sculk_sensor_blank"),() -> Init.SPEEDRUNNER_SCULK_SENSOR_BLANK);
+        event.register(Registries.ITEM, new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "speedrunner_sculk_sensor_blank"),() -> Init.SPEEDRUNNER_SCULK_SENSOR_BLANK_I);
+
         event.register(Registries.BLOCK, new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "speedrunner_sculk_sensor_health"),() -> Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH);
         event.register(Registries.ITEM, new ResourceLocation(SpeedrunnerVsHunterSculk.MOD_ID, "speedrunner_sculk_sensor_health"),() -> Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH_I);
 
