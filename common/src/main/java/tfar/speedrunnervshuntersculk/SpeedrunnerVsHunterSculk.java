@@ -37,6 +37,8 @@ public class SpeedrunnerVsHunterSculk {
 
     //mod info
 
+    //  a red version for health, maybe yellow for knockback, green for strength, and like purple for the void one
+
     // This mod would be used in a minecraft manhunt gamemode
     //
     //can't use teams to desgniate players on teams as it would conflict with my manhunt datapack

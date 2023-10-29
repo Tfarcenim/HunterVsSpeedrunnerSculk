@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 public enum BuffType {
 
+    BLANK(serverPlayer -> {}),
     HEALTH(serverPlayer -> Utils.addStackableAttributeModifier(serverPlayer, Attributes.MAX_HEALTH,4)),
     REACH(serverPlayer -> {
         Utils.addStackableAttributeModifier(serverPlayer, Services.PLATFORM.getBlockReachAttribute(),1);
