@@ -66,6 +66,10 @@ public class SpeedrunnerVsHunterSculkFabric implements ModInitializer, UseBlockC
             boolean pause = data.isTimePaused();
             if (pause) return;
 
+            if (!data.isTimeManipulator(player)) {
+                data.setTimeManipulator(player);
+            }
+
             while (var11.hasNext()) {
                 ServerPlayer serverPlayer = var11.next();
                 NetworkPlatform.sendToClient(serverPlayer, new SoundManagerS2CPacket(ModPackets.SOUND_MANAGER, pause));
