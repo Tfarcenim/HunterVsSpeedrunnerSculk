@@ -18,7 +18,9 @@ public abstract class GameRulesMixin {
 
     @Inject(at = @At("TAIL"), method = "<clinit>")
     private static void init(CallbackInfo info) {
-        SpeedrunnerVsHunterSculk.RULE_SPEEDRUNNER_SCULK_COOLDOWN = register("speedrunnerSculkCooldown",
+        SpeedrunnerVsHunterSculk.RULE_SPEEDRUNNER_SCULK_ACTIVATION_COOLDOWN = register("speedrunnerSculkActivationCooldown",
                 GameRules.Category.PLAYER, GameRules.IntegerValue.create(20));
+        SpeedrunnerVsHunterSculk.RULE_SPEEDRUNNER_SCULK_PLACE_COOLDOWN = register("speedrunnerSculkPlaceCooldown",
+                GameRules.Category.PLAYER, GameRules.IntegerValue.create(20 * 60));
     }
 }

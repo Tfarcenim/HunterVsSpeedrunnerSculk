@@ -43,7 +43,8 @@ public class SpeedrunnerVsHunterSculk {
         SpeedrunnerVsHunterSculk.server = server;
     }
 
-    public static GameRules.Key<GameRules.IntegerValue> RULE_SPEEDRUNNER_SCULK_COOLDOWN;
+    public static GameRules.Key<GameRules.IntegerValue> RULE_SPEEDRUNNER_SCULK_ACTIVATION_COOLDOWN;
+    public static GameRules.Key<GameRules.IntegerValue> RULE_SPEEDRUNNER_SCULK_PLACE_COOLDOWN;
 
 
     //mod info

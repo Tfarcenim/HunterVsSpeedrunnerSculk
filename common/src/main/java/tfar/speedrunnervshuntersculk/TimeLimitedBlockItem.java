@@ -28,11 +28,12 @@ public class TimeLimitedBlockItem extends BlockItem {
     public InteractionResult useOn(UseOnContext $$0) {
         Player player = $$0.getPlayer();
         if (player != null && !player.getAbilities().instabuild) {
-            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH_I,20 * 60);
-            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_REACH_I,20 * 60);
-            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_KNOCKBACK_I,20 * 60);
-            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_VOID_I,20 * 60);
-
+            int cooldown = $$0.getLevel().getGameRules().getInt(SpeedrunnerVsHunterSculk.RULE_SPEEDRUNNER_SCULK_PLACE_COOLDOWN);
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_BLANK_I,cooldown);
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_HEALTH_I,cooldown);
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_REACH_I,cooldown);
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_KNOCKBACK_I,cooldown);
+            player.getCooldowns().addCooldown(Init.SPEEDRUNNER_SCULK_SENSOR_VOID_I,cooldown);
         }
         return super.useOn($$0);
     }

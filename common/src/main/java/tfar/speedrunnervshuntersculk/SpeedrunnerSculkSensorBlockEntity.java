@@ -85,7 +85,6 @@ public class SpeedrunnerSculkSensorBlockEntity extends SculkSensorBlockEntity im
             if (context == null) return true;
 
             return context.sourceEntity() instanceof ServerPlayer serverPlayer && !serverPlayer.getUUID().equals(SpeedrunnerVsHunterSculk.speedrunner);
-
         }
 
         @Override

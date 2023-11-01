@@ -17,18 +17,16 @@ public class VoidPowerManager {
         MinecraftServer server = player.server;
         CustomBossEvents customBossEvents = server.getCustomBossEvents();
         CustomBossEvent customBossEvent = customBossEvents.get(ID);
-        if (customBossEvent != null) {
-            customBossEvent.addPlayer(player);
-        } else {
+        if (customBossEvent == null) {
             try {
                 customBossEvent = customBossEvents.create(ID, ComponentUtils.updateForEntity(server.createCommandSourceStack(),
                         Component.literal("Void Power 0"), null, 0));
             } catch (CommandSyntaxException e) {
                 throw new RuntimeException(e);
             }
-            customBossEvent.addPlayer(player);
             customBossEvent.setMax(powerRequiredForNextLevel(0));
         }
+        //customBossEvent.addPlayer(player);
         return customBossEvent;
         //source.sendSuccess(() -> Component.translatable("commands.bossbar.create.success", customBossEvent.getDisplayName()), true);
     }

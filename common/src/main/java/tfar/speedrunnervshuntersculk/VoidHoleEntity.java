@@ -103,7 +103,10 @@ public class VoidHoleEntity extends Projectile {
             level().getProfiler().pop();
         }
         Vec3 vec3 = this.getDeltaMovement();
-        move(MoverType.SELF,vec3);
+        double d0 = this.getX() + vec3.x;
+        double d1 = this.getY() + vec3.y;
+        double d2 = this.getZ() + vec3.z;
+        setPos(d0,d1,d2);
     }
 
     @Override
@@ -118,7 +121,13 @@ public class VoidHoleEntity extends Projectile {
 
         if (owner instanceof ServerPlayer serverplayer) {
             for (ItemStack stack : stacks) {
-                int k = stack.getCount();
+                serverplayer.addItem(stack);
+            }
+        }
+    }
+
+    /*
+                    int k = stack.getCount();
 
                 while (k > 0) {
                     int l = Math.min(stack.getMaxStackSize(), k);
@@ -143,9 +152,8 @@ public class VoidHoleEntity extends Projectile {
                         }
                     }
                 }
-            }
-        }
-    }
+
+     */
 
     @Override
     protected void readAdditionalSaveData(CompoundTag var1) {

@@ -61,7 +61,7 @@ public class Utils {
         if (player.getUUID().equals(SpeedrunnerVsHunterSculk.speedrunner) && VoidPowerManager.getVoidPower(player) > 0) {
             VoidHoleEntity voidHoleEntity = Init.VOID_HOLE.create(player.level());
             voidHoleEntity.createOrderedBreakPositions();
-            voidHoleEntity.moveTo(player.getPosition(0));
+            voidHoleEntity.moveTo(player.getPosition(0).add(0,player.getEyeHeight(),0));
             voidHoleEntity.setOwner(player);
             voidHoleEntity.setNoGravity(true);
             voidHoleEntity.setDeltaMovement(player.getLookAngle());
