@@ -46,6 +46,7 @@ public class SpeedrunnerVsHunterSculk {
     public static GameRules.Key<GameRules.IntegerValue> RULE_SPEEDRUNNER_SCULK_ACTIVATION_COOLDOWN;
     public static GameRules.Key<GameRules.IntegerValue> RULE_SPEEDRUNNER_SCULK_PLACE_COOLDOWN;
 
+    public static GameRules.Key<GameRules.IntegerValue> RULE_SPEEDRUNNER_SCULK_RANGE;
 
     //mod info
 

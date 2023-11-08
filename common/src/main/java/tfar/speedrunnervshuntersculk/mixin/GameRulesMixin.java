@@ -22,5 +22,7 @@ public abstract class GameRulesMixin {
                 GameRules.Category.PLAYER, GameRules.IntegerValue.create(20));
         SpeedrunnerVsHunterSculk.RULE_SPEEDRUNNER_SCULK_PLACE_COOLDOWN = register("speedrunnerSculkPlaceCooldown",
                 GameRules.Category.PLAYER, GameRules.IntegerValue.create(20 * 60));
+        SpeedrunnerVsHunterSculk.RULE_SPEEDRUNNER_SCULK_RANGE = register("speedrunnerSculkRange",
+                GameRules.Category.PLAYER, GameRules.IntegerValue.create(50));
     }
 }

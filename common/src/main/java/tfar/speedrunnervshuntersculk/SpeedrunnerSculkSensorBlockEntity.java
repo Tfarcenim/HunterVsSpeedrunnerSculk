@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.level.EntityGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.SculkSensorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -90,6 +91,12 @@ public class SpeedrunnerSculkSensorBlockEntity extends SculkSensorBlockEntity im
         @Override
         public void onReceiveVibration(ServerLevel $$0, BlockPos $$1, GameEvent $$2, @Nullable Entity $$3, @Nullable Entity $$4, float $$5) {
             super.onReceiveVibration($$0, $$1, $$2, $$3, $$4, $$5);
+        }
+
+        @Override
+        public int getListenerRadius() {
+            Level level = SpeedrunnerSculkSensorBlockEntity.this.getLevel();
+            return level.getGameRules().getInt(SpeedrunnerVsHunterSculk.RULE_SPEEDRUNNER_SCULK_RANGE);
         }
     }
 }
